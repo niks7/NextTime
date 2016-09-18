@@ -22,6 +22,11 @@ class Item {
     var nextPrediction = NSDate()
     var history = [NSDate]()
     
+    init()
+    {
+        
+    }
+    
     init( name: String,  last: NSDate, next: NSDate, history: [NSDate])
     {
         self.taskName = name;

@@ -11,11 +11,12 @@ import UIKit
 class MainTableViewController: UITableViewController {
 
     var items = [Item]();
+    var selectedItem = Item();
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let date = [NSDate(), NSDate()]
+        let date = [NSDate().dateByAddingTimeInterval(Double(-60*60*24)), NSDate()]
         
         
         var history1 = [NSDate]();
@@ -54,6 +55,8 @@ class MainTableViewController: UITableViewController {
         //var nextDate = item1.nextTimePredictor()
         
         items = [item1, item2, item3]
+                
+        self.title = "Next Time"
         
     }
     
@@ -88,6 +91,14 @@ class MainTableViewController: UITableViewController {
         cell.lastTime.text = item.lastDone.description;
         cell.nextTime.text = item.nextTimePredictor().description;
         
+        cell.onButtonTapped = {
+            
+            item.history.insert(NSDate(), atIndex: 0)
+            item.lastDone = NSDate()
+            
+            self.items[indexPath.row] = item;
+            self.tableView.reloadData();
+        }
         
         return cell
     }
@@ -95,9 +106,6 @@ class MainTableViewController: UITableViewController {
 
     @IBAction func addButton(sender: UIBarButtonItem) {
         performSegueWithIdentifier("addItemSeg", sender: self)
-        
-        
-        
     }
     
     func saveItem(item: Item) {
@@ -113,6 +121,21 @@ class MainTableViewController: UITableViewController {
             let secondViewController = segue.destinationViewController as! NewTaskViewController
             secondViewController.parentViewControllerLol = self
         }
+        
+        if segue.identifier == "showDetail" {
+            
+            let secondViewController = segue.destinationViewController as! DetailViewController
+            secondViewController.item = self.selectedItem
+        }
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let item = items[indexPath.row]
+        self.selectedItem = item;
+        
+        performSegueWithIdentifier("showDetail", sender: self)
     }
     /*
     // Override to support conditional editing of the table view.
