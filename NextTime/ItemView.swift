@@ -13,16 +13,15 @@ class ItemView: UITableViewCell {
     var onButtonTapped : (() -> Void)? = nil
     
     @IBOutlet weak var taskName: UILabel!
-
     @IBOutlet weak var lastTime: UILabel!
     @IBOutlet weak var nextTime: UILabel!
+    @IBOutlet weak var count: UILabel!
     
     @IBAction func DoTask(sender: AnyObject) {
         
         if let onButtonTapped = self.onButtonTapped {
             onButtonTapped()
         }
-        
         
     }
     

@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9491A65B1D8F1A6700F9AF55 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491A65A1D8F1A6700F9AF55 /* DetailViewController.swift */; };
+		9491A6651D8F314C00F9AF55 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9491A6621D8F30F300F9AF55 /* Eureka.framework */; };
+		9491A6661D8F314C00F9AF55 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9491A6621D8F30F300F9AF55 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9491A6701D8F31EB00F9AF55 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491A66F1D8F31EB00F9AF55 /* AddViewController.swift */; };
+		9491A6731D8FA6E300F9AF55 /* ShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491A6721D8FA6E300F9AF55 /* ShowDetailViewController.swift */; };
 		9EAE53071D8EDA6600D7C8F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE53061D8EDA6600D7C8F5 /* AppDelegate.swift */; };
-		9EAE53091D8EDA6600D7C8F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE53081D8EDA6600D7C8F5 /* ViewController.swift */; };
 		9EAE530C1D8EDA6700D7C8F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE530A1D8EDA6700D7C8F5 /* Main.storyboard */; };
 		9EAE530E1D8EDA6700D7C8F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE530D1D8EDA6700D7C8F5 /* Assets.xcassets */; };
 		9EAE53111D8EDA6700D7C8F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE530F1D8EDA6700D7C8F5 /* LaunchScreen.storyboard */; };
@@ -18,10 +20,30 @@
 		9EAE53351D8EDC8400D7C8F5 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE53341D8EDC8400D7C8F5 /* MainTableViewController.swift */; };
 		9EAE53371D8EDCF800D7C8F5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE53361D8EDCF800D7C8F5 /* Item.swift */; };
 		9EAE53391D8EE07800D7C8F5 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE53381D8EE07800D7C8F5 /* ItemView.swift */; };
-		9EAE533B1D8EF1AB00D7C8F5 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE533A1D8EF1AB00D7C8F5 /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9491A6611D8F30F300F9AF55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9491A65C1D8F30F200F9AF55 /* Eureka.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51729DEB1B9A4F5E004A00EB;
+			remoteInfo = Eureka;
+		};
+		9491A6631D8F30F300F9AF55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9491A65C1D8F30F200F9AF55 /* Eureka.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51729DF51B9A4F5E004A00EB;
+			remoteInfo = EurekaTests;
+		};
+		9491A6671D8F314C00F9AF55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9491A65C1D8F30F200F9AF55 /* Eureka.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 51729DEA1B9A4F5E004A00EB;
+			remoteInfo = Eureka;
+		};
 		9EAE53181D8EDA6700D7C8F5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9EAE52FB1D8EDA6500D7C8F5 /* Project object */;
@@ -38,11 +60,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9491A6691D8F314C00F9AF55 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9491A6661D8F314C00F9AF55 /* Eureka.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		9491A65A1D8F1A6700F9AF55 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9491A65C1D8F30F200F9AF55 /* Eureka.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Eureka.xcodeproj; path = Eureka/Eureka.xcodeproj; sourceTree = "<group>"; };
+		9491A66F1D8F31EB00F9AF55 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		9491A6721D8FA6E300F9AF55 /* ShowDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDetailViewController.swift; sourceTree = "<group>"; };
 		9EAE53031D8EDA6600D7C8F5 /* NextTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EAE53061D8EDA6600D7C8F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9EAE53081D8EDA6600D7C8F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9EAE530B1D8EDA6700D7C8F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9EAE530D1D8EDA6700D7C8F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9EAE53101D8EDA6700D7C8F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,7 +93,6 @@
 		9EAE53341D8EDC8400D7C8F5 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		9EAE53361D8EDCF800D7C8F5 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		9EAE53381D8EE07800D7C8F5 /* ItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
-		9EAE533A1D8EF1AB00D7C8F5 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9491A6651D8F314C00F9AF55 /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +121,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9491A65D1D8F30F200F9AF55 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9491A6621D8F30F300F9AF55 /* Eureka.framework */,
+				9491A6641D8F30F300F9AF55 /* EurekaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9491A66A1D8F319200F9AF55 /* Main Screen */ = {
+			isa = PBXGroup;
+			children = (
+				9EAE53381D8EE07800D7C8F5 /* ItemView.swift */,
+				9EAE53341D8EDC8400D7C8F5 /* MainTableViewController.swift */,
+			);
+			name = "Main Screen";
+			sourceTree = "<group>";
+		};
+		9491A66B1D8F319D00F9AF55 /* Add Task */ = {
+			isa = PBXGroup;
+			children = (
+				9491A66F1D8F31EB00F9AF55 /* AddViewController.swift */,
+			);
+			name = "Add Task";
+			sourceTree = "<group>";
+		};
+		9491A66C1D8F31A700F9AF55 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				9EAE53361D8EDCF800D7C8F5 /* Item.swift */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		9491A66D1D8F31B300F9AF55 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9EAE530A1D8EDA6700D7C8F5 /* Main.storyboard */,
+				9EAE530F1D8EDA6700D7C8F5 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		9491A66E1D8F31CD00F9AF55 /* Task Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9491A6721D8FA6E300F9AF55 /* ShowDetailViewController.swift */,
+			);
+			name = "Task Detail";
+			sourceTree = "<group>";
+		};
 		9EAE52FA1D8EDA6500D7C8F5 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +179,7 @@
 				9EAE531A1D8EDA6700D7C8F5 /* NextTimeTests */,
 				9EAE53251D8EDA6800D7C8F5 /* NextTimeUITests */,
 				9EAE53041D8EDA6600D7C8F5 /* Products */,
+				9491A65C1D8F30F200F9AF55 /* Eureka.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,15 +197,12 @@
 			isa = PBXGroup;
 			children = (
 				9EAE53061D8EDA6600D7C8F5 /* AppDelegate.swift */,
-				9EAE53081D8EDA6600D7C8F5 /* ViewController.swift */,
-				9EAE53361D8EDCF800D7C8F5 /* Item.swift */,
-				9EAE530A1D8EDA6700D7C8F5 /* Main.storyboard */,
-				9EAE533A1D8EF1AB00D7C8F5 /* NewTaskViewController.swift */,
-				9EAE53381D8EE07800D7C8F5 /* ItemView.swift */,
-				9EAE53341D8EDC8400D7C8F5 /* MainTableViewController.swift */,
-				9491A65A1D8F1A6700F9AF55 /* DetailViewController.swift */,
+				9491A66C1D8F31A700F9AF55 /* Data Model */,
+				9491A66D1D8F31B300F9AF55 /* Storyboards */,
+				9491A66B1D8F319D00F9AF55 /* Add Task */,
+				9491A66A1D8F319200F9AF55 /* Main Screen */,
+				9491A66E1D8F31CD00F9AF55 /* Task Detail */,
 				9EAE530D1D8EDA6700D7C8F5 /* Assets.xcassets */,
-				9EAE530F1D8EDA6700D7C8F5 /* LaunchScreen.storyboard */,
 				9EAE53121D8EDA6700D7C8F5 /* Info.plist */,
 			);
 			path = NextTime;
@@ -150,10 +236,12 @@
 				9EAE52FF1D8EDA6600D7C8F5 /* Sources */,
 				9EAE53001D8EDA6600D7C8F5 /* Frameworks */,
 				9EAE53011D8EDA6600D7C8F5 /* Resources */,
+				9491A6691D8F314C00F9AF55 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9491A6681D8F314C00F9AF55 /* PBXTargetDependency */,
 			);
 			name = NextTime;
 			productName = NextTime;
@@ -230,6 +318,12 @@
 			mainGroup = 9EAE52FA1D8EDA6500D7C8F5;
 			productRefGroup = 9EAE53041D8EDA6600D7C8F5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9491A65D1D8F30F200F9AF55 /* Products */;
+					ProjectRef = 9491A65C1D8F30F200F9AF55 /* Eureka.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9EAE53021D8EDA6600D7C8F5 /* NextTime */,
@@ -238,6 +332,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9491A6621D8F30F300F9AF55 /* Eureka.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Eureka.framework;
+			remoteRef = 9491A6611D8F30F300F9AF55 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9491A6641D8F30F300F9AF55 /* EurekaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = EurekaTests.xctest;
+			remoteRef = 9491A6631D8F30F300F9AF55 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9EAE53011D8EDA6600D7C8F5 /* Resources */ = {
@@ -272,12 +383,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EAE53371D8EDCF800D7C8F5 /* Item.swift in Sources */,
-				9EAE53091D8EDA6600D7C8F5 /* ViewController.swift in Sources */,
 				9EAE53351D8EDC8400D7C8F5 /* MainTableViewController.swift in Sources */,
+				9491A6701D8F31EB00F9AF55 /* AddViewController.swift in Sources */,
 				9EAE53391D8EE07800D7C8F5 /* ItemView.swift in Sources */,
-				9EAE533B1D8EF1AB00D7C8F5 /* NewTaskViewController.swift in Sources */,
+				9491A6731D8FA6E300F9AF55 /* ShowDetailViewController.swift in Sources */,
 				9EAE53071D8EDA6600D7C8F5 /* AppDelegate.swift in Sources */,
-				9491A65B1D8F1A6700F9AF55 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +410,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9491A6681D8F314C00F9AF55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Eureka;
+			targetProxy = 9491A6671D8F314C00F9AF55 /* PBXContainerItemProxy */;
+		};
 		9EAE53191D8EDA6700D7C8F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9EAE53021D8EDA6600D7C8F5 /* NextTime */;
@@ -421,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = NextTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AppGali.NextTime;
@@ -432,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = NextTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AppGali.NextTime;

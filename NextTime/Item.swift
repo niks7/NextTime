@@ -7,32 +7,43 @@
 //
 
 import Foundation
-
-
-struct Time
-{
-        
-}
-
+import UIKit
 
 class Item {
     
     var taskName = ""
+    var detail = ""
     var lastDone = NSDate()
     var nextPrediction = NSDate()
     var history = [NSDate]()
+    var image = UIImage()
     
     init()
     {
         
     }
     
-    init( name: String,  last: NSDate, next: NSDate, history: [NSDate])
+    init(name: String,  last: NSDate, history: [NSDate])
     {
         self.taskName = name;
         self.lastDone = last;
-        self.nextPrediction = next;
         self.history = history;
+        
+        self.nextPrediction = nextTimePredictor();
+    }
+    
+    init(name: String, detail: String, lastDone: NSDate, image: UIImage)
+    {
+        self.taskName = name;
+        self.lastDone = lastDone;
+        self.detail = detail;
+        
+        self.history = [NSDate]();
+        self.history.append(lastDone);
+        
+        self.image = image;
+        
+        self.nextPrediction = nextTimePredictor();
     }
     
     func daysBetweenDates(startDate: NSDate, endDate: NSDate) -> Int
@@ -44,16 +55,54 @@ class Item {
         return components.day
     }
     
+    func getDateInLocal(date: NSDate) -> String {
+        
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        formatter.timeStyle = .ShortStyle
+        
+        let defaultTimeZoneStr = formatter.stringFromDate(date)
+        
+        return defaultTimeZoneStr;
+    }
+    
+    func getDateInLocalWithoutTime(date: NSDate) -> String {
+        
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        
+        let defaultTimeZoneStr = formatter.stringFromDate(date)
+        
+        return defaultTimeZoneStr;
+    }
+    
+    func getCount() -> Int{
+        return history.count;
+    }
+    
+    func didTask(){
+        //Add current date to history
+        self.history.append(NSDate())
+        
+        //Update last done date
+        self.lastDone = NSDate()
+        
+        //Update prediction
+        self.nextPrediction = nextTimePredictor();
+    }
+    
     func nextTimePredictor() -> NSDate {
         
-        //1. Get number of days between task dates
         
+        //Need minimum 5 historical occurences for prediction to work
         if(history.count < 5)
         {
             return NSDate();
         }
         
-        var diffs = Int();//= [Double]();
+        //1. Get number of days between task dates
+
+        var diffs = Int();
         
         var count = 0;
         
@@ -61,26 +110,25 @@ class Item {
         
         for item in history
         {
+            //If first item, skip diff
             if(count == 0)
             {
                 tempDate = item;
             }
             else
             {
-            //diffs.append(item.timeIntervalSinceDate(tempDate));
-            diffs += self.daysBetweenDates(tempDate, endDate: item)
-            tempDate = item;
+                diffs += self.daysBetweenDates(tempDate, endDate: item)
+                tempDate = item;
             }
             
             count += 1;
         }
         
-        var predicted = diffs / (history.count - 1);
-        var input = Double(predicted*60*60*24);// as! Double;
+        let predicted = diffs / (history.count - 1);
+        let input = Double(predicted*60*60*24);
         
+        //add to last date of occurence
         let nextDate = history[history.count - 1].dateByAddingTimeInterval(input);
-        
-        
         
         return nextDate;
     }
