@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeoCloud Analytics | Hedge Fund Valuation Platform</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <div class="nav-logo">NC</div>
+      <div class="nav-title">NeoCloud Analytics <span>| Hedge Fund Valuation Platform</span></div>
+    </div>
+    <div class="nav-controls">
+      <div class="nav-filter">
+        <select id="filterSector">
+          <option value="all">All Sectors</option>
+          <option value="Security">Security</option>
+          <option value="Data Infrastructure">Data Infrastructure</option>
+          <option value="Observability">Observability</option>
+          <option value="AI/ML Platform">AI/ML Platform</option>
+          <option value="DevOps">DevOps</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Search ticker or name..." style="width:180px;">
+      </div>
+      <div class="nav-date" id="navDate"></div>
+    </div>
+  </nav>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-label">Analytics</div>
+      <div class="sidebar-section">
+        <div class="sidebar-item active" data-section="overview">
+          <span class="sidebar-icon">◉</span>
+          <span>Overview</span>
+        </div>
+        <div class="sidebar-item" data-section="comptable">
+          <span class="sidebar-icon">☰</span>
+          <span>Comp Table</span>
+        </div>
+        <div class="sidebar-item" data-section="growth">
+          <span class="sidebar-icon">↗</span>
+          <span>Growth Analysis</span>
+        </div>
+        <div class="sidebar-item" data-section="valuation">
+          <span class="sidebar-icon">◎</span>
+          <span>Valuation Map</span>
+        </div>
+        <div class="sidebar-item" data-section="dcf">
+          <span class="sidebar-icon">⊞</span>
+          <span>DCF Scenarios</span>
+        </div>
+        <div class="sidebar-item" data-section="rule40">
+          <span class="sidebar-icon">△</span>
+          <span>Rule of 40</span>
+        </div>
+        <div class="sidebar-item" data-section="cohort">
+          <span class="sidebar-icon">⊡</span>
+          <span>Cohort Analysis</span>
+        </div>
+        <div class="sidebar-item" data-section="risk">
+          <span class="sidebar-icon">⬡</span>
+          <span>Risk Matrix</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- ===== OVERVIEW ===== -->
+      <div class="section-panel active" id="panel-overview">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Universe Overview</div>
+            <div class="section-description">Neo cloud company universe — key aggregate metrics and sector breakdown</div>
+          </div>
+        </div>
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="charts-grid">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Sector Allocation by Market Cap</div>
+                <div class="card-subtitle">Weighted by enterprise value</div>
+              </div>
+            </div>
+            <div class="chart-container"><canvas id="chartSectorAllocation"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">EV/Revenue NTM Distribution</div>
+                <div class="card-subtitle">Sorted by forward revenue multiple</div>
+              </div>
+            </div>
+            <div class="chart-container"><canvas id="chartMultipleBar"></canvas></div>
+          </div>
+          <div class="card full-width">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Historical Multiple Trends</div>
+                <div class="card-subtitle">Trailing 12-month EV/Revenue for selected companies</div>
+              </div>
+              <div class="company-selector">
+                <select id="histSelect1"></select>
+                <select id="histSelect2"></select>
+                <select id="histSelect3"></select>
+              </div>
+            </div>
+            <div class="chart-container"><canvas id="chartHistoricalMultiples"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== COMP TABLE ===== -->
+      <div class="section-panel" id="panel-comptable">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Comparable Company Analysis</div>
+            <div class="section-description">Comprehensive comps table — click column headers to sort</div>
+          </div>
+          <button class="btn" id="exportBtn">⎘ Export TSV</button>
+        </div>
+        <div class="comp-table-wrapper">
+          <table class="comp-table" id="compTable">
+            <thead>
+              <tr>
+                <th data-key="ticker">Ticker</th>
+                <th data-key="name">Company</th>
+                <th data-key="sector">Sector</th>
+                <th data-key="marketCap">Mkt Cap ($B)</th>
+                <th data-key="enterpriseValue">EV ($B)</th>
+                <th data-key="ltmRevenue">LTM Rev ($B)</th>
+                <th data-key="ntmRevenue">NTM Rev ($B)</th>
+                <th data-key="revenueGrowthLTM">Rev Gr LTM</th>
+                <th data-key="revenueGrowthNTM">Rev Gr NTM</th>
+                <th data-key="grossMargin">Gross Mgn</th>
+                <th data-key="fcfMargin">FCF Mgn</th>
+                <th data-key="evToRevenueLTM">EV/Rev LTM</th>
+                <th data-key="evToRevenueNTM">EV/Rev NTM</th>
+                <th data-key="evToGrossProfit">EV/GP</th>
+                <th data-key="netRetentionRate">NRR</th>
+                <th data-key="ruleOf40Score">Rule of 40</th>
+                <th data-key="magicNumber">Magic #</th>
+              </tr>
+            </thead>
+            <tbody id="compTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== GROWTH ANALYSIS ===== -->
+      <div class="section-panel" id="panel-growth">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Growth Analysis</div>
+            <div class="section-description">Revenue trends and sector-level growth composition</div>
+          </div>
+        </div>
+        <div class="charts-grid">
+          <div class="card full-width">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Revenue by Sector (Quarterly)</div>
+                <div class="card-subtitle">Stacked area — aggregate quarterly revenue by sector</div>
+              </div>
+            </div>
+            <div class="chart-container tall"><canvas id="chartRevenueStack"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Sales Efficiency — Magic Number</div>
+                <div class="card-subtitle">Net new ARR / S&M spend (higher = more efficient)</div>
+              </div>
+            </div>
+            <div class="chart-container"><canvas id="chartMagicNumber"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Net Revenue Retention</div>
+                <div class="card-subtitle">Dollar-based net retention rate (%)</div>
+              </div>
+            </div>
+            <div class="chart-container"><canvas id="chartNRR"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VALUATION MAP ===== -->
+      <div class="section-panel" id="panel-valuation">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Valuation Map</div>
+            <div class="section-description">Growth vs. valuation bubble chart — size = market cap, color = sector</div>
+          </div>
+        </div>
+        <div class="sector-legend" id="sectorLegend"></div>
+        <div class="card">
+          <div class="chart-container tall"><canvas id="chartBubble"></canvas></div>
+        </div>
+      </div>
+
+      <!-- ===== DCF SCENARIOS ===== -->
+      <div class="section-panel" id="panel-dcf">
+        <div class="section-header">
+          <div>
+            <div class="section-title">DCF Scenario Analysis</div>
+            <div class="section-description">Interactive discounted cash flow model with sensitivity analysis</div>
+          </div>
+        </div>
+        <div class="dcf-layout">
+          <div class="dcf-controls">
+            <div class="dcf-control-group">
+              <label>Select Company</label>
+              <select id="dcfCompany"></select>
+            </div>
+            <div class="dcf-control-group">
+              <label>Model Assumptions</label>
+              <div class="dcf-slider-group">
+                <div class="dcf-slider-header">
+                  <span class="dcf-slider-label">Revenue CAGR (5yr)</span>
+                  <span class="dcf-slider-value" id="dcfCagrVal">20%</span>
+                </div>
+                <input type="range" id="dcfCagr" min="0" max="50" value="20" step="1">
+              </div>
+              <div class="dcf-slider-group">
+                <div class="dcf-slider-header">
+                  <span class="dcf-slider-label">Terminal FCF Margin</span>
+                  <span class="dcf-slider-value" id="dcfFcfVal">25%</span>
+                </div>
+                <input type="range" id="dcfFcf" min="0" max="40" value="25" step="1">
+              </div>
+              <div class="dcf-slider-group">
+                <div class="dcf-slider-header">
+                  <span class="dcf-slider-label">WACC</span>
+                  <span class="dcf-slider-value" id="dcfWaccVal">10%</span>
+                </div>
+                <input type="range" id="dcfWacc" min="8" max="15" value="10" step="0.5">
+              </div>
+              <div class="dcf-slider-group">
+                <div class="dcf-slider-header">
+                  <span class="dcf-slider-label">Terminal Growth</span>
+                  <span class="dcf-slider-value" id="dcfTgVal">3%</span>
+                </div>
+                <input type="range" id="dcfTg" min="1" max="4" value="3" step="0.5">
+              </div>
+              <div class="dcf-slider-group">
+                <div class="dcf-slider-header">
+                  <span class="dcf-slider-label">Exit Multiple (EV/Rev)</span>
+                  <span class="dcf-slider-value" id="dcfExitVal">12x</span>
+                </div>
+                <input type="range" id="dcfExit" min="5" max="30" value="12" step="1">
+              </div>
+            </div>
+          </div>
+          <div class="dcf-results">
+            <div class="dcf-summary-cards" id="dcfSummary"></div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">5-Year Revenue & FCF Projections ($B)</div>
+              </div>
+              <div id="dcfProjections"></div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Sensitivity: Implied Price per Share ($)</div>
+                <div class="card-subtitle">WACC (rows) vs Terminal Growth (columns)</div>
+              </div>
+              <div id="dcfSensitivity"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== RULE OF 40 ===== -->
+      <div class="section-panel" id="panel-rule40">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Rule of 40 Analysis</div>
+            <div class="section-description">Revenue growth + FCF margin — companies above the diagonal line pass the Rule of 40</div>
+          </div>
+        </div>
+        <div class="sector-legend" id="rule40Legend"></div>
+        <div class="card">
+          <div class="chart-container tall"><canvas id="chartRule40"></canvas></div>
+        </div>
+      </div>
+
+      <!-- ===== COHORT ANALYSIS ===== -->
+      <div class="section-panel" id="panel-cohort">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Cohort Comparison</div>
+            <div class="section-description">Compare up to 3 companies across key dimensions</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Radar: Multi-Dimensional Comparison</div>
+            <div class="compare-row">
+              <select id="radarSelect1"></select>
+              <select id="radarSelect2"></select>
+              <select id="radarSelect3"></select>
+            </div>
+          </div>
+          <div class="chart-container tall"><canvas id="chartRadar"></canvas></div>
+        </div>
+      </div>
+
+      <!-- ===== RISK MATRIX ===== -->
+      <div class="section-panel" id="panel-risk">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Risk / Return Matrix</div>
+            <div class="section-description">Attractiveness heatmap — valuation vs growth, color-coded by composite score</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Valuation (EV/Rev NTM) vs Growth (Rev Growth NTM)</div>
+          </div>
+          <div id="riskMatrix"></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    NeoCloud Analytics — For institutional use only. This platform contains hypothetical data for demonstration purposes.
+    Not investment advice. All valuations are based on modeled assumptions and may not reflect actual market conditions.
+    © 2026 NeoCloud Analytics. Confidential.
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
