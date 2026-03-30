@@ -10,7 +10,7 @@
 
   // ---------- Init ----------
   document.addEventListener('DOMContentLoaded', () => {
-    Chart.register(ChartjsPluginDatalabels);
+    Chart.register(ChartDataLabels);
     Chart.defaults.font.family = "'Inter', sans-serif";
     Chart.defaults.color = '#94a3b8';
 
